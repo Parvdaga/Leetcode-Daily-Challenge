@@ -1,13 +1,14 @@
 class Solution {
 public:
     string mergeAlternately(string word1, string word2) {
-        string st="";
-        int count = max(word1.size(),word2.size());
-        for(int i=0;i<count;i++){
-            if(word1.size()>i) 
-            st=st+word1[i];
-            if(word2.size()>i)
-            st=st+word2[i];
+        int n1 = word1.size(), n2 = word2.size();
+        string st;
+        st.reserve(n1 + n2); // avoid repeated reallocations
+
+        int i = 0, j = 0;
+        while (i < n1 || j < n2) {
+            if (i < n1) st.push_back(word1[i++]);
+            if (j < n2) st.push_back(word2[j++]);
         }
         return st;
     }
